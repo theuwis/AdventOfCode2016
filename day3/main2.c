@@ -4,7 +4,6 @@ int main() {
    FILE * fp_data;
    fp_data = fopen("data", "r");
 
-
    int v11, v21, v31, v12, v22, v32, v13, v23, v33;
    int nrparsed = 0, possible = 0;
 
