@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 #include "md5.c"
 
 int main(){
@@ -10,11 +11,11 @@ int main(){
    char code[9] = "--------\0"; int code_counter = 0;
    bool done[8] = {false};
 
-
    long index = 0;
    size_t len = 0;
    uint8_t * md5_result;
 
+   clock_t start = clock(), diff;
    while(1){
       asprintf(&dummy,"%s%ld" , msg, index);
       len = strlen(dummy);
@@ -31,6 +32,9 @@ int main(){
 
          if(code_counter >= 8){
             printf("done! code=%s\n", code);
+            diff = clock() - start;
+            int msec = diff * 1000 / CLOCKS_PER_SEC;
+            printf("time: %ds %dms", msec/1000, msec%1000);
             break;
          }
          else{
